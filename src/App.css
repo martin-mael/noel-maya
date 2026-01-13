@@ -1,42 +1,290 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Style kitsch vintage de Noël */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Pacifico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.christmas-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 50%, #1a472a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Flocons de neige */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snowflake {
+  position: absolute;
+  top: -20px;
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+.snowflake:nth-child(1) { left: 5%; animation-duration: 8s; animation-delay: 0s; font-size: 1rem; }
+.snowflake:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 1s; font-size: 1.8rem; }
+.snowflake:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 2s; font-size: 1.2rem; }
+.snowflake:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 0.5s; font-size: 2rem; }
+.snowflake:nth-child(5) { left: 45%; animation-duration: 9s; animation-delay: 3s; font-size: 1rem; }
+.snowflake:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 1.5s; font-size: 1.5rem; }
+.snowflake:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 2.5s; font-size: 1.8rem; }
+.snowflake:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 4s; font-size: 1.2rem; }
+.snowflake:nth-child(9) { left: 85%; animation-duration: 10s; animation-delay: 0.8s; font-size: 2rem; }
+.snowflake:nth-child(10) { left: 92%; animation-duration: 15s; animation-delay: 2s; font-size: 1rem; }
+.snowflake:nth-child(11) { left: 8%; animation-duration: 11s; animation-delay: 3.5s; font-size: 1.6rem; }
+.snowflake:nth-child(12) { left: 50%; animation-duration: 9s; animation-delay: 1.2s; font-size: 1.4rem; }
+
+@keyframes fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Carte principale */
+.card {
+  background: linear-gradient(145deg, #fef6e4 0%, #fffbf0 50%, #fef6e4 100%);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 2px 10px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.3);
+  border: 8px solid #c41e3a;
+  position: relative;
+  z-index: 10;
+  min-width: 340px;
+  max-width: 500px;
+  width: 95vw;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 3px dashed #d4af37;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Face avant de la carte */
+.card-front {
+  padding: 50px 40px;
   text-align: center;
+  cursor: pointer;
+  position: relative;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ribbon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes logo-spin {
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.title {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 3rem;
+  color: #c41e3a;
+  text-shadow: 
+    2px 2px 0 #d4af37,
+    4px 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.tree {
+  font-size: 5rem;
+  margin: 20px 0;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
   from {
-    transform: rotate(0deg);
+    filter: drop-shadow(0 0 10px #ffcc00);
   }
   to {
-    transform: rotate(360deg);
+    filter: drop-shadow(0 0 25px #ff6600);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.subtitle {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+  color: #2d5a3f;
+  margin-bottom: 25px;
+}
+
+.click-hint {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 1.1rem;
+  color: #c41e3a;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Intérieur de la carte */
+.card-inside {
+  padding: 40px 35px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hearts {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+}
+
+.message-title {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 2rem;
+  color: #c41e3a;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 0 #d4af37;
+}
+
+.message {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.2rem;
+  color: #2d5a3f;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.message p {
+  margin-bottom: 15px;
+}
+
+.decorations {
+  font-size: 2rem;
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.decorations span {
+  animation: twinkle 1s ease-in-out infinite;
+}
+
+.decorations span:nth-child(1) { animation-delay: 0s; }
+.decorations span:nth-child(2) { animation-delay: 0.2s; }
+.decorations span:nth-child(3) { animation-delay: 0.4s; }
+.decorations span:nth-child(4) { animation-delay: 0.6s; }
+.decorations span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.signature {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.4rem;
+  color: #c41e3a;
+  margin: 20px 0;
+}
+
+.back-btn {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 1rem;
+  background: linear-gradient(145deg, #c41e3a, #a01830);
+  color: white;
+  border: 3px solid #d4af37;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+}
+
+.back-btn:hover {
+  background: linear-gradient(145deg, #d42e4a, #b02840);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.5);
+}
+
+/* Décorations du bas */
+.footer-decoration {
+  margin-top: 30px;
+  font-size: 2rem;
+  z-index: 10;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Responsive */
+@media (max-width: 550px) {
+  .card {
+    min-width: 300px;
+    max-width: 98vw;
+    width: 98vw;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .card-front, .card-inside {
+    padding: 30px 15px;
+  }
 }
